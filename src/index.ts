@@ -27,10 +27,9 @@ server.listen(8080, () => {
 });
 
 const config = dotenv.config();
-const MONGO_URI = `mongodb+srv://curso-admin:${
+const MONGO_URI = `mongodb+srv://${config.parsed!.MONGO_USER}:${
   config.parsed!.MONGO_API_KEY
 }@cluster0.qkaum13.mongodb.net/?retryWrites=true&w=majority`;
-console.log(config.parsed!.MONGO_API_KEY);
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URI);
