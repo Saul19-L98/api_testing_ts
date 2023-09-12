@@ -6,6 +6,7 @@ import compression from "compression";
 import cors from "cors";
 import mongoose from "mongoose";
 import router from "./router/index";
+import dotenv from "dotenv";
 
 const app = express();
 
@@ -25,8 +26,11 @@ server.listen(8080, () => {
   console.log("Server is running on port 8080");
 });
 
-const MONGO_URI =
-  "mongodb+srv://curso-admin:hKKo0uiLdOp4Kt1m@cluster0.qkaum13.mongodb.net/?retryWrites=true&w=majority";
+const config = dotenv.config();
+const MONGO_URI = `mongodb+srv://curso-admin:${
+  config.parsed!.MONGO_API_KEY
+}@cluster0.qkaum13.mongodb.net/?retryWrites=true&w=majority`;
+console.log(config.parsed!.MONGO_API_KEY);
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URI);
